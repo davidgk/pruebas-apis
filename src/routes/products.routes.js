@@ -10,9 +10,9 @@ import {
 const productRoutes = Router()
 
 productRoutes.get('/', getProducts)
+productRoutes.get('/:productId', getProductById)
 productRoutes.put('/:productId', updateProducts)
 productRoutes.delete('/:productId', deleteProducts)
-productRoutes.get('/:productId', getProductById)
 productRoutes.post('/', createProduct)
 
 export default productRoutes;
