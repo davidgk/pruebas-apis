@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test/*/**.test.js",
-    "start": "babel-node src/index.js"
+    "start": "node build/index.js",
+    "dev": "nodemon src/index.js --exec babel-node",
+    "build": "babel src  --out-dir build"
   },
   "keywords": [],
-  "author": "",
+  "author": "David G",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
