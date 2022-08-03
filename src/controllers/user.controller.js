@@ -10,3 +10,8 @@ export const getUserById = async (req, res) => {
     const user = await User.findById(req.params.userId)
     res.json(user)
 }
+
+export const getUsers = async (req, res) => {
+    const users = await User.find();
+    res.json(users)
+}
