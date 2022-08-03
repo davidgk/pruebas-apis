@@ -1,4 +1,3 @@
-import Product from "../models/Product";
 import User from "../models/User";
 
 export const createUser =async  (req, res) => {

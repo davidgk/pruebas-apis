@@ -3,6 +3,9 @@ import morgan from 'morgan'
 import pkg from '../package.json'
 import productRoutes from "./routes/products.routes";
 import userRouter from "./routes/user.routes";
+import authRouter from "./routes/auth.routes";
+import rolesRoutes from "./routes/roles.routes";
+
 
 export const app = express()
 
@@ -16,5 +19,7 @@ app.get('/', (req,res) => res.json({
 }))
 
 
-app.use('/products', productRoutes)
-app.use('/users',userRouter)
+app.use('/api/products', productRoutes)
+app.use('/api/users',userRouter)
+app.use('/api/auth',authRouter)
+app.use('/api/roles',rolesRoutes)
