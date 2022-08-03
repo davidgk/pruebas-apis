@@ -1,6 +1,11 @@
 import {Router} from "express";
+import productRoutes from "./products.routes";
+import {createUser, getUserById} from "../controllers/user.controller";
 
 export const userRouter = Router()
-userRouter.get('/', (req, res) => res.json('getUsers'))
+
+productRoutes.get('/:userId', getUserById)
+productRoutes.post('/', createUser)
+
 
 export default userRouter;
