@@ -7,7 +7,7 @@
     "test": "mocha test/*/**.test.js",
     "start": "node build/index.js",
     "dev": "nodemon src/index.js --exec babel-node",
-    "build": "babel src  --out-dir build"
+    "build": "babel src --out-dir build"
   },
   "keywords": [],
   "author": "David G",

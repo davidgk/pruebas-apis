@@ -1,9 +1,9 @@
 "use strict";
 
-var _express = _interopRequireDefault(require("express"));
+var _app = require("./app");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+require("./database");
 
-var app = (0, _express["default"])();
-app.listen(3000);
+_app.app.listen(3000);
+
 console.log('Server running on port', 3000);
