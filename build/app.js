@@ -15,6 +15,10 @@ var _products = _interopRequireDefault(require("./routes/products.routes"));
 
 var _user = _interopRequireDefault(require("./routes/user.routes"));
 
+var _auth = _interopRequireDefault(require("./routes/auth.routes"));
+
+var _roles = _interopRequireDefault(require("./routes/roles.routes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
@@ -29,5 +33,7 @@ app.get('/', function (req, res) {
     version: app.get('pkg').version
   });
 });
-app.use('/products', _products["default"]);
-app.use('/users', _user["default"]);
+app.use('/api/products', _products["default"]);
+app.use('/api/users', _user["default"]);
+app.use('/api/auth', _auth["default"]);
+app.use('/api/roles', _roles["default"]);
