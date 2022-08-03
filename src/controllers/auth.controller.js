@@ -6,8 +6,27 @@ export const signoff= async (req, res) => {
     res.json('signoff')
 }
 
+function createTokenObject(user) {
+    const whatImSavingInToken = { id: user._id}
+    const privateKey = config.PRODUCT_API;
+    const configurationObject = { expiresIn: 86400};
+    const token = jwt.sign(whatImSavingInToken, privateKey, configurationObject)
+    return {token}
+}
+
 export const signin  = async (req, res) => {
-    res.json('signin')
+    try {
+        const {email, password} = req.body
+        let user = await User.findOne({email});
+        if(!user) return res.status(400).json({msg: "user not found"})
+        if (user) {
+            const isValid = await User.comparePassword(password, user.password )
+            if(!isValid) return res.status(400).json({msg: "password Invalid", token: null})
+            res.json(createTokenObject(user))
+        }
+    } catch (e) {
+        res.json({ error: e })
+    }
 }
 
 async function checkRoles(roles, user) {
@@ -26,15 +45,8 @@ export const signup  = async (req, res) => {
             email,
             password: await User.encryptPassword(password)});
         await checkRoles(roles, newUser)
-
         const userSaved = await newUser.save();
-
-        const whatImSavingInToken = { id: userSaved._id}
-        const privateKey = config.PRODUCT_API;
-        const configurationObject = { expiresIn: 86400};
-        const token = jwt.sign(whatImSavingInToken, privateKey, configurationObject)
-        console.log(userSaved)
-        res.status(201).json({token})
+        res.status(201).json(createTokenObject(userSaved))
     } catch (e) {
         res.status(400).json({error:e})
     }
