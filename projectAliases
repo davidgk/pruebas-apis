@@ -1,0 +1,2 @@
+alias createContainer="docker run -p 4500:8080 davidgk/pruebas-apis"
+alias buildImage="docker build . -t davidgk/pruebas-apis"
