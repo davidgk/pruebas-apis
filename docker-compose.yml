@@ -8,6 +8,12 @@ services:
       - 27017:27017
     volumes:
       - mongodb:/data/db
+  db-test:
+    image: mongo
+    ports:
+      - 27018:27017
+    volumes:
+      - mongodb:/data/db
 
   api:
     container_name: pruebas-apis
